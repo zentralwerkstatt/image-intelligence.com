@@ -1,0 +1,96 @@
+
+:root {
+  --wall: #d9f1f0;
+  /* Light ocean-tint gradient, pinned to the viewport so the sticky header blends into the page */
+  --wall-ramp: linear-gradient(135deg, #eef9f9 0%, #d9f1f0 50%, #bfe6e4 100%) fixed;
+  --ink: #000000;
+  --quiet: #5f5f5f;
+  --line: #d9d9d6;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --text: "Newsreader", Georgia, "Times New Roman", serif;
+  --gutter: max(16px, 3vw);
+  --gap: clamp(16px, 2.4vw, 32px);
+  --head: clamp(1.9rem, 4.6vw, 5rem);
+}
+* { box-sizing: border-box }
+html { scroll-behavior: smooth; scroll-padding-top: 96px }
+body { background: var(--wall-ramp) var(--wall); color: var(--ink); font-family: var(--text); font-size: 19px; line-height: 1.45; -webkit-font-smoothing: antialiased }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--wall-ramp) var(--wall) }
+a { color: inherit; text-decoration: none }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+html, body, h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; padding: 0 }
+ul, ol { list-style: none }
+.wrap { padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)) }
+
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--wall-ramp) var(--wall); padding-block: 14px }
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 32px }
+.brand { display: block }
+.brand svg { height: 44px; width: auto; display: block }
+.brand .eye { transform-box: fill-box; transform-origin: center; animation: blink 8.8s linear infinite }
+@keyframes blink {
+0%, 29.545%, 32.841%, 76.023%, 79.318%, 81.818%, 85.114%, 100% { transform: scaleY(1) }
+30.568%, 31.477%, 77.045%, 77.955%, 82.841%, 83.75% { transform: scaleY(0) }
+}
+nav ul { display: flex; flex-wrap: wrap; gap: 6px 24px; font-family: var(--display); font-size: 16px }
+nav a { padding-block: 6px; display: inline-block; border-bottom: 1px solid transparent }
+nav a:hover { border-bottom-color: var(--ink) }
+
+.hero { --hero-space: clamp(28px, 3.2vw, 44px); padding-block: clamp(32px, 6vw, 88px) var(--hero-space) }
+.hero .grid { row-gap: var(--hero-space) }
+.after { padding-top: clamp(48px, 7vw, 100px) }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap) }
+h1 { grid-column: 1 / span 11; font-family: var(--display); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 5rem); line-height: 1.24; letter-spacing: -.025em; font-variation-settings: "opsz" 96; text-wrap: pretty; min-width: 0 }
+.problem-head { grid-column: 1 / span 11; font-family: var(--display); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 5rem); line-height: 1.24; letter-spacing: -.025em; font-variation-settings: "opsz" 96; text-wrap: balance; min-width: 0 }
+.problem-body { grid-column: 1 / -1; margin-left: calc(var(--head) * 8.1); max-width: 64ch; min-width: 0; font-size: clamp(21px, 1.75vw, 25px); line-height: 1.4 }
+
+.problem-head mark, h1 mark { background: var(--ink); color: #ffffff; padding: 0 .12em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
+img.lead { display: block; width: 100%; height: auto }
+
+section { padding-block: clamp(56px, 9vw, 130px) }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 4.4vw, 4.2rem); line-height: 1.02; letter-spacing: -.025em; text-wrap: balance }
+.head { padding-bottom: clamp(28px, 4vw, 56px) }
+.head h2 { grid-column: 1 / span 9 }
+
+.body { grid-column: 7 / -1; display: grid; gap: 1em; max-width: 62ch; min-width: 0 }
+
+.part { padding-bottom: clamp(28px, 4vw, 56px) }
+.part h2 { grid-column: 1 / span 6; min-width: 0 }
+#optimization, #team, #beta { padding-top: 0 }
+.part p { grid-column: 7 / -1; max-width: 62ch; min-width: 0 }
+
+.rows { border-top: 1px solid var(--ink) }
+.rows li { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px var(--gap); padding-block: 18px; border-bottom: 1px solid var(--line); align-items: baseline }
+.rows h3 { grid-column: 1 / span 5; font-weight: 300; font-style: italic; font-size: clamp(1.4rem, 2vw, 1.75rem); line-height: 1.15; min-width: 0 }
+.rows p { grid-column: 7 / -1; max-width: 62ch; min-width: 0 }
+
+.team .rows li { border-bottom-color: #cfcfcc }
+.team .rows h3 { font-family: var(--display); font-style: normal; font-weight: 400 }
+.lab { padding-top: clamp(40px, 6vw, 80px) }
+.lab h3 { grid-column: 1 / span 5; font-family: var(--display); font-weight: 400; font-size: clamp(1.4rem, 2.2vw, 2rem); line-height: 1.1; min-width: 0 }
+.lab p { grid-column: 7 / -1; max-width: 62ch; min-width: 0 }
+
+
+.beta h2 { grid-column: 1 / span 6 }
+.beta .mail { grid-column: 7 / -1; font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.6rem); line-height: 1.1; align-self: end; min-width: 0; overflow-wrap: anywhere }
+.beta a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px }
+
+
+@media (max-width: 820px) {
+body { font-size: 18px }
+header.site { position: static }
+html { scroll-padding-top: 16px }
+h1, .head h2, .beta h2, .problem-head, .problem-body { grid-column: 1 / -1 }
+.body, .part h2, .part p, .lab h3, .lab p, .beta .mail { grid-column: 1 / -1 }
+.rows h3, .rows p { grid-column: 1 / -1 }
+.problem-body { margin-left: 0 }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } .brand .eye { animation: none } }
+
+/* Abstract marks beside each Understanding and Optimization item */
+.pictured li { padding-block: 24px; align-items: start }
+.pictured .mark { grid-column: 1 / span 2; width: 100%; max-width: 132px; height: auto; display: block }
+.pictured h3 { grid-column: 3 / span 4 }
+@media (max-width: 820px) {
+.pictured .mark { grid-column: 1 / -1; max-width: 96px; margin-bottom: 8px }
+.pictured h3 { grid-column: 1 / -1 }
+}
