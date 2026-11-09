@@ -65,6 +65,19 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 4.4vw
 
 .team .rows li { border-bottom-color: #cfcfcc }
 .team .rows h3 { font-family: var(--display); font-style: normal; font-weight: 400 }
+
+/* Expandable bios: each team row is a <details>; the summary keeps the original row layout */
+.team .rows li { display: block; padding-block: 0 }
+.team summary { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px var(--gap); padding-block: 18px; align-items: baseline; cursor: pointer; list-style: none }
+.team summary::-webkit-details-marker { display: none }
+.team summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+.team summary h3::after { content: "+"; display: inline-block; margin-left: .35em; color: var(--quiet); font-weight: 300; transition: transform .2s ease }
+.team details[open] summary h3::after { transform: rotate(45deg) }
+.team summary:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px }
+.team .bio { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); padding-bottom: 24px }
+.team .bio p { grid-column: 7 / -1; max-width: 62ch; min-width: 0; font-size: 17px; line-height: 1.5 }
+@media (max-width: 820px) { .team .bio p { grid-column: 1 / -1 } }
+@media (prefers-reduced-motion: reduce) { .team summary h3::after { transition: none } }
 .lab { padding-top: clamp(40px, 6vw, 80px) }
 .lab h3 { grid-column: 1 / span 5; font-family: var(--display); font-weight: 400; font-size: clamp(1.4rem, 2.2vw, 2rem); line-height: 1.1; min-width: 0 }
 .lab p { grid-column: 7 / -1; max-width: 62ch; min-width: 0 }
